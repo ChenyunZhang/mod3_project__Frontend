@@ -5,18 +5,25 @@ const closeModalButton = document.querySelector(`[data-close-button]`);
 const overlay = document.getElementById("overlay");
 const createUser = document.getElementById("createUserForm");
 const resCreateUser = document.querySelector("#createUserForm");
+const resHeader = document.querySelector("div.header");
+
+const sectionCenter = document.querySelector(".section-center");
+const btnContainer = document.querySelector(".btn-container");
 
 let gloRes = {};
 let myUser = {};
 
 // ################## fetch get the restaurant api ########################
-fetch(url)
-  .then((res) => res.json())
-  .then((restaurants) => {
-    restaurants.forEach((restaurant) => {
-      renderRestaurantInfo(restaurant);
+
+function afterLogin() {
+  fetch(url)
+    .then((res) => res.json())
+    .then((restaurants) => {
+      restaurants.forEach((restaurant) => {
+        renderRestaurantInfo(restaurant);
+      });
     });
-  });
+}
 
 // ################## update likes ############################
 function updateLike(theNewLikes, res, resLikes) {
@@ -52,14 +59,14 @@ function renderRestaurantInfo(res) {
   resRowdiv = document.createElement("div");
   resRowdiv.classList.add("row");
   resButDiv_1 = document.createElement("div");
-  resButDiv_1.classList.add("col-xs-12");
+  resButDiv_1.classList.add("col-xs-4");
   resButDiv_2 = document.createElement("div");
-  resButDiv_2.classList.add("col-xs-12");
+  resButDiv_2.classList.add("col-xs-4");
   resButDiv_3 = document.createElement("div");
-  resButDiv_3.classList.add("col-xs-12");
+  resButDiv_3.classList.add("col-xs-4");
   const resBr = document.createElement("br");
   const resLikes = document.createElement("button");
-  resLikes.className = "btn btn-block btn-success";
+  resLikes.className = "btn btn-block btn-warning";
   resLikes.innerText = `👍${res.like} likes`;
 
   const resReviewButton = document.createElement("button");
@@ -75,7 +82,12 @@ function renderRestaurantInfo(res) {
   resWeb.innerText = `website`;
   const resReviewUl = document.createElement("ul");
   resComment(res, resReviewUl);
+
+  resCuisines = document.createElement("div");
   resBar.append(resObj);
+  resCuisines.innerText = `cuisines: ${res.cuisines}`;
+  resObj.append(resCuisines);
+
   resRowdiv.append(resButDiv_1);
   resButDiv_1.append(resLikes);
   resRowdiv.append(resButDiv_3);
@@ -98,6 +110,7 @@ function renderRestaurantInfo(res) {
     openModal(modal);
   });
 }
+
 // ########### end of rendering function #######################################
 
 // @########################### review form submit button event listener #######
@@ -123,22 +136,34 @@ function createUserObj(newUser) {
   })
     .then((res) => res.json())
     .then((newUsername) => {
-      return (myUser = newUsername);
+      myUser = newUsername;
+      if (myUser.name == "") {
+        alert("Please enter you user name");
+      } else {
+        afterLogin();
+        let myUserabc = document.createElement("div");
+        myUserabc.innerText = `currently logged in as ${myUser.name}`;
+        resHeader.append(myUserabc);
+        resCreateUser.classList.toggle("active");
+        resHeader.classList.toggle("active");
+      }
     });
 }
 
 resReviewForm.addEventListener("submit", (e) => {
   e.preventDefault();
   let newContent = e.target.comment.value;
-  createComment(newContent);
   const modal = closeModalButton.closest(".modal-review");
-  closeModal(modal);
+  if (newContent == "") {
+    alert("write some words, dumb ass!");
+  } else {
+    createComment(newContent);
+    closeModal(modal);
+  }
   e.target.reset();
 });
 
 function createComment(newContent) {
-  console.log(myUser);
-  console.log(newContent);
   return fetch(`http://localhost:3000/comments`, {
     method: "POST",
     headers: {
@@ -149,7 +174,12 @@ function createComment(newContent) {
       user_id: myUser.id,
       restaurant_id: gloRes.id,
     }),
-  }).then((r) => r.json());
+  })
+    .then((r) => r.json())
+    .then((newReview) => {
+      console.log(newReview);
+      console.log(myUser.comments);
+    });
 }
 
 // ############################ fetch post function #############################
@@ -187,7 +217,21 @@ function resComment(res, resObj) {
     let resReviewLi = document.createElement("li");
     resReviewLi.className = "reviewlist";
     resReviewLi.innerText = `${comment.content}`;
+    let deleteLink = document.createElement("button")
+    deleteLink.innerText = "delete"
+    deleteLink.dataset.id = comment.id
+    if(myUser.id === comment.user_id){
+      resReviewLi.append(deleteLink)
+    }
     resObj.append(resReviewLi);
+
+    deleteLink.addEventListener("click", ()=>{
+      fetch(`http://localhost:3000/comments/${comment.id}`,{method: "DELETE"})
+      .then(r =>r.json())
+      .then(() =>{
+        resReviewLi.remove()
+      })
+    })
   });
 }
 
