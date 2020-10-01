@@ -7,9 +7,13 @@
   grid-auto-flow: dense;
 }
 
-body {
+body.active {
   /* background-color: rgb(248, 196, 207); */
   background-image: url("https://images.unsplash.com/photo-1587049479964-c5618ddf1e9c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80");
+}
+
+body.active-color {
+  background: rgba(255, 204, 204, 0.911);
 }
 
 div.header {
@@ -168,7 +172,9 @@ div.header {
 
 .resCard {
   box-shadow: 0 0 5px rgba(129, 127, 127, 0.1);
-  background: rgb(244, 245, 212);
+  background: rgb(255, 255, 255);
+  border-radius: 10px;
+  box-shadow: 5px 5px 20px;
   /* align-items: center; */
   overflow: scroll;
   padding: 15px;
@@ -241,7 +247,13 @@ div.item {
 .like-btn,
 .review-btn {
   font-size: 1.5rem;
+  cursor: pointer;
 }
+
+/* a.like-btn:link,
+a.review-btn:link{
+  text-decoration: none;
+} */
 
 .resName {
   color: black;
@@ -327,6 +339,7 @@ div.item {
 .tag:hover {
   background-color: crimson;
   color: white;
+  cursor: pointer;
 }
 
 .tag:hover::after {
@@ -337,8 +350,8 @@ div.item {
 #createUserForm {
   /* border: solid; */
   /* margin: 20 0 0 450px; */
-  padding: 50px;
-  width: 500px;
+  padding: 7vh;
+  width: 35vw;
   height: 400px;
   transform: translate(-50%, -50%) scale(1);
   position: fixed;
@@ -351,33 +364,42 @@ div.item {
 #login-form-title {
   text-align: center;
   color: #ebeff0;
-  padding: 20px;
+  padding: 10px;
+}
+
+#login-form-subtitle {
+  text-align: center;
+  color: #e0e4e6;
+  padding-bottom: 10px;
 }
 
 label {
   color: #ffffff;
   font-size: 17px;
-  margin-bottom: 20px;
+  margin-top: 3vh;
+  margin-bottom: 10px;
 }
 
 #user {
-  width: 400px;
+  width: 27vw;
   height: 35px;
   border: none;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   border-radius: 3px;
   padding-left: 8px;
+  /* border-radius: 7px; */
 }
 
 .log {
-  width: 400px;
+  width: 27vw;
   height: 30px;
   border: none;
-  border-radius: 17px;
+  border-radius: 7px;
   padding-left: 7px;
   /* color: blue; */
 }
 
 .log:hover {
-  background-color: rgb(238, 255, 0);
+  background-color: rgba(184, 189, 199, 0.897);
+  /* color: white; */
 }

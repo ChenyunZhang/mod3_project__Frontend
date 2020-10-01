@@ -13,6 +13,7 @@ const btnContainer = document.querySelector(".btn-container");
 const logoutButton = document.querySelector(".logoutButton");
 const searchBar = document.getElementById("searchBar");
 const resNav = document.querySelector("#nav");
+let resBody = document.querySelector("body");
 let reviewSection = document.querySelector(".modal-view-review-body");
 
 let gloRes = {};
@@ -96,11 +97,11 @@ function renderRestaurantInfo(res) {
 
   const resLikes = document.createElement("a");
   resLikes.className = "like-btn";
-  resLikes.innerText = `👍${res.like} likes`;
+  resLikes.innerText = `👍 ${res.like} likes`;
 
   const resReviewButton = document.createElement("a");
   resReviewButton.className = "review-btn";
-  resReviewButton.innerText = `🔏review`;
+  resReviewButton.innerText = `🔏 review`;
   resReviewButton.dataset.target = "#modal-review";
 
   const resCuisine = document.createElement("div");
@@ -244,6 +245,8 @@ function createUserObj(newUser) {
         resHeader.classList.toggle("active");
         logoutButton.classList.toggle("active");
         resNav.classList.toggle("active");
+        resBody.classList.toggle("active");
+        resBody.classList.toggle("active-color");
       }
     });
 }
