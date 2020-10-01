@@ -7,39 +7,62 @@
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap"
+      rel="stylesheet"
+    />
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <title>App</title>
+    
+    <title>Rotten Potato</title>
     <link rel="stylesheet" href="index.css" />
+    <link rel="icon" type="image/png" href="favicon.png"/>
   </head>
-  <body>
-      <div class="row createUserForm">
-        <div class="col-md-6 col-md-offset-3">
-          <form class="createUserForm" id="createUserForm">
-            <div class="form-group">
-              <input class="form-control" id="user" placeholder="username" />
-            </div>
-            <button type="submit" class="btn btn-default">login</button>
-            <br>
-            <button type="submit" class="btn btn-default">Nah, I want to visit as visitor</button>
-          </form>
-        </div>
-      </div>
 
-    </button>
-    <div class="header active">Restaurants
-      <br>
-    <button>1</button>
-    <button>2</button>
-    <button>3</button>
-    <button>4</button>
-  </div>
+  
+  <body>
+    <ul id="nav" class="active">
+      <li id="sign-out" class="logoutButton active">Log out</li>
+    </ul>
+
+    <div class="createUserForm"></div>
+    <div class="login">
+
+      <form class="createUserForm login" id="createUserForm">
+        <h1 id="login-form-title">Rotten Potatoes Login</h1>
+          <label for="user"><b>User Name</b></label>
+          <br>
+          <input
+            type="text"
+            id="user"
+            placeholder="Enter Username"
+          />
+          <br>
+          <button type="submit" class="submit-btn log">login</button>
+        </div>
+      </form>
+      </div>
+    </div>
+
+    <div class="header active">
+      Rotten Potatoes
+      <div id="searchWrapper">
+        <input 
+          type="text"
+          name="searchBar"
+          id="searchBar"
+          placeholder="Search"
+        />
+      </div>
+    </div>
+
     <div class="grid-container"></div>
 
     <!-- <!-- <button data-modal-target="#modal-review">Open Modal</button> -->
     <div class="modal-review" id="modal-review">
       <div class="modal-review-header">
-        <div class="title">Review</div>
+        <div class="title">Let's review!</div>
         <button data-close-button class="close-button">&times;</button>
       </div>
       <div class="modal-review-body">
@@ -48,6 +71,7 @@
             <textarea
               class="form-control"
               rows="10"
+              name="userinput"
               id="comment"
               placeholder="Let's review..."
             ></textarea>
@@ -56,7 +80,17 @@
         </form>
       </div>
     </div>
-    <div id="overlay"></div>
+    <div id="review-overlay"></div>
+
+    <!-- fsdfjsdfksdfsdhfksdhfdjksfhdskfhdskfhdk -->
+    <div class="modal-view-review" id="modal-view-review">
+      <div class="modal-view-review-header">
+        <div class="view-review-title">Reviews</div>
+        <button data-close-button-2 class="close-button">&times;</button>
+      </div>
+      <div class="modal-view-review-body"></div>
+    </div>
+    <div id="view-review-overlay"></div>
   </body>
   <script src="src/html.js"></script>
 </html>
