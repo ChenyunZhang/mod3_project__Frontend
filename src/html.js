@@ -1,4 +1,4 @@
-url = "http://localhost:3000/restaurants";
+url = " https://rottenpotato-api.herokuapp.com/restaurants";
 const resBar = document.querySelector(".grid-container");
 const resReviewForm = document.querySelector("#resReviewForm");
 const closeModalButton = document.querySelector(`[data-close-button]`);
@@ -181,7 +181,7 @@ function resComment(res, resObj) {
   if (res.comments.length === 0) {
     let resReviewLi = document.createElement("li");
     resReviewLi.className = "reviewlist";
-    resReviewLi.innerText = `Be the first one to review ${res.name.toUpperCase()}`;
+    resReviewLi.innerText = `Be the first one to review ${res.name}`;
     resObj.append(resReviewLi);
   } else {
     res.comments.forEach((comment) => {
@@ -199,7 +199,8 @@ function resComment(res, resObj) {
       resObj.append(resReviewLi);
 
       deleteLink.addEventListener("click", () => {
-        fetch(`http://localhost:3000/comments/${comment.id}`, {
+        if (confirm("Are you sure you want to delete your review?")) {  
+        fetch(` https://rottenpotato-api.herokuapp.com/comments/${comment.id}`, {
           method: "DELETE",
         })
           .then((r) => r.json())
@@ -207,6 +208,7 @@ function resComment(res, resObj) {
             resReviewLi.remove();
             res.comments.pop();
           });
+        }
       });
     });
   }
@@ -223,7 +225,7 @@ resCreateUser.addEventListener("submit", (e) => {
 });
 
 function createUserObj(newUser) {
-  return fetch(`http://localhost:3000/users`, {
+  return fetch(` https://rottenpotato-api.herokuapp.com/users`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -265,7 +267,7 @@ resReviewForm.addEventListener("submit", function (e) {
 });
 
 function createComment(newContent) {
-  return fetch(`http://localhost:3000/comments`, {
+  return fetch(` https://rottenpotato-api.herokuapp.com/comments`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

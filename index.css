@@ -13,7 +13,7 @@ body.active {
 }
 
 body.active-color {
-  background: rgba(255, 204, 204, 0.911);
+  background: rgba(252, 154, 154, 0.911);
 }
 
 div.header {
@@ -35,7 +35,7 @@ div.header {
   transition: background 0.2s;
   display: flex;
   justify-content: space-between;
-  text-transform: capitalize;
+  /* text-transform: capitalize; */
 }
 
 /* ################### */
