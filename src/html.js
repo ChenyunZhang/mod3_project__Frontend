@@ -225,7 +225,7 @@ resCreateUser.addEventListener("submit", (e) => {
 });
 
 function createUserObj(newUser) {
-  return fetch(`https://https://rotten-potatoes-rails-backend.herokuapp.com/users`, {
+  return fetch(`https://rotten-potatoes-rails-backend.herokuapp.com/users`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
