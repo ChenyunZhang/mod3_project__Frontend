@@ -72,7 +72,7 @@ function updateLike(theNewLikes, res, resLikes) {
   })
     .then((r) => r.json())
     .then((updatedLike) => {
-      resLikes.innerText = `👍${updatedLike.like} likes`;
+      resLikes.innerText = `👍 ${updatedLike.like} likes`;
       res.like = updatedLike.like;
     });
 }
