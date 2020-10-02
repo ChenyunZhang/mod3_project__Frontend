@@ -1,4 +1,4 @@
-url = "https://rottenpotato-api.herokuapp.com/restaurants";
+url = "https://rotten-potatoes-rails-backend.herokuapp.com/restaurants";
 const resBar = document.querySelector(".grid-container");
 const resReviewForm = document.querySelector("#resReviewForm");
 const closeModalButton = document.querySelector(`[data-close-button]`);
@@ -200,7 +200,7 @@ function resComment(res, resObj) {
 
       deleteLink.addEventListener("click", () => {
         if (confirm("Are you sure you want to delete your review?")) {  
-        fetch(`https://rottenpotato-api.herokuapp.com/comments/${comment.id}`, {
+        fetch(`https://rotten-potatoes-rails-backend.herokuapp.com/comments/${comment.id}`, {
           method: "DELETE",
         })
           .then((r) => r.json())
@@ -225,7 +225,7 @@ resCreateUser.addEventListener("submit", (e) => {
 });
 
 function createUserObj(newUser) {
-  return fetch(`https://rottenpotato-api.herokuapp.com/users`, {
+  return fetch(`https://https://rotten-potatoes-rails-backend.herokuapp.com/users`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -267,7 +267,7 @@ resReviewForm.addEventListener("submit", function (e) {
 });
 
 function createComment(newContent) {
-  return fetch(`https://rottenpotato-api.herokuapp.com/comments`, {
+  return fetch(`https://rotten-potatoes-rails-backend.herokuapp.com/comments`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
