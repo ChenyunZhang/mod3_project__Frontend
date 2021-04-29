@@ -12,8 +12,8 @@
 <p> Rotten Potatoes is New Yokers' local guide to discover the best restaurants around you. Rotten Potatoes is implemented with zomato API, users can search the restaurants with location or name with ease. Users can also check out the restaurants reviews from other users. Leave reviews to the restaurants they've been to.</p>
 
 <div>
-     <img align="center" width=500px src="project3_1.png"/>
-     <img align="center" width=500px src="project3_2.png"/>
+     <img align="center" width=500px src="src/project3_1.png"/>
+     <img align="center" width=500px src="src/project3_2.png"/>
 </div>
 
 
